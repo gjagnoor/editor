@@ -1,6 +1,6 @@
 {
   "name": "editor",
-  "homepage": "https://{gjagnoor}.github.io/{editor}",
+  "homepage": "http://{gjagnoor}.github.io/{editor}",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -68,11 +68,7 @@
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
     "predeploy": "npm run build",
-<<<<<<< HEAD
     "deploy": "gh-pages -d build"
-=======
-    "deploy": "gh-pages -b master -d build"
->>>>>>> parent of 64410a5... Updates
   },
   "eslintConfig": {
     "extends": [
