@@ -1,1 +1,0 @@
-to view the live application please visit : https://gjagnoor.github.io/editor/
