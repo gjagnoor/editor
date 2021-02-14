@@ -1,5 +1,5 @@
 // eslint-disable-next-line
-import React from "react";
+import React, { useState } from "react";
 import "codemirror/lib/codemirror.css";
 import "codemirror/theme/material.css";
 import { Controlled as CodeMirror } from 'react-codemirror2';
@@ -9,27 +9,33 @@ import "codemirror/addon/hint/show-hint.css";
 require('codemirror/mode/css/css.js');
 
 
-export default class EditorJS extends React.Component {
+export default function EditorCSS (props) {
+    const [value, setValue] = useState(`h5 {
+    color: red;
+    font-size: 2em;
+}
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            value: ""
-        };
-    }
+#main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 
-    render() {
+body {
+    font-family: monospace;
+}
+`)
         return (
-            <div style={{ width: "33%", margin: "1%" }}>
-                <div style={{backgroundColor: "black", height: "2em"}}>
-                    <h5 style={{color: "white", textAlign: "center"}}>CSS</h5>
+            <div className="indeditor">
+                <div className="editor_heading">
+                    <h5 className="heading_text">CSS</h5>
                 </div>
                 <CodeMirror 
                     onBeforeChange={(editor, data, value) => {
-                        this.setState({ value });
-                        this.props.setCSS(value);
+                        setValue(value);
+                        props.setCSS(value);
                     }}
-                    value={this.state.value}
+                    value={value}
                     className="editor"
                     options={{
                         mode: 'css',
@@ -40,14 +46,12 @@ export default class EditorJS extends React.Component {
                         lineWrapping: true,
                         matchBrackets: true,
                         autoCloseBrackets: true,
+                        autocorrect: true,
                         extraKeys: {
-                            "Ctrl":"autocomplete"
-                        }
-                        
+                            "Ctrl": "autocomplete"
+                        }  
                     }}
                 />
             </div>
         )
-    
-    }
 }

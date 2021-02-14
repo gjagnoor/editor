@@ -11,3 +11,25 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.editor {
+  width: 28em;
+}
+
+.App {
+  background-color: black;
+}
+
+.indeditor {
+  margin: 1%;
+}
+
+.editor_heading {
+  background-color: "black";
+  height: "2em";
+}
+
+.heading_text {
+  color: white;
+  text-align: center;
+}

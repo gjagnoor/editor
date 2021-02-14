@@ -3,19 +3,47 @@ import React, {useState, useEffect} from "react";
 import EditorHTML from "./Editorhtml.js";
 import EditorJS from "./EditorJS.js";
 import EditorCSS from "./EditorCSS.js";
-import Terminal from 'terminal-in-react';
-import NodeEvalPlugin from 'terminal-in-react-node-eval-plugin';
-import pseudoFileSystemPlugin from 'terminal-in-react-pseudo-file-system-plugin';
-import result from "./result.js";
-import testing from "./testing.js";
-const FileSystemPlugin = pseudoFileSystemPlugin();
+import { makeStyles } from '@material-ui/core/styles';
+import Grid from '@material-ui/core/Grid';
 
-
+const useStyles = makeStyles((theme) => ({
+  root: {
+    flexGrow: 1,
+  },
+  control: {
+    padding: theme.spacing(2),
+  },
+}));
 
 function App() {
-  const [html, setHTML] = useState("<h5>Waiting for changes...</h5>");
-  const [css, setCSS] = useState(null);
-  const [js, setJS] = useState(null);
+  const [html, setHTML] = useState(`
+    <div id="main">
+      <h5 id="heading">Welcome to EDITOR</h5>
+      <p>Edit the code above. Result will appear here :) Happy Coding!</p>
+      <button>Click Me!</button>
+    </div>
+  `);
+  const [css, setCSS] = useState(`
+    h5 {
+      color: red;
+      font-size: 2em;
+    }
+    #main {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    body {
+      font-family: monospace;
+    }
+  `);
+  const [js, setJS] = useState(`
+    $("button").on("click", () => {
+      alert("Yay I work!");
+    });
+  `);
+  const classes = useStyles();
 
   useEffect(() => {
     const timeout = setTimeout(() => {
@@ -28,8 +56,13 @@ function App() {
   const srcDoc = `
     <html>
       <head>
+        <style>
+          ${css}
+        </style>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
       </head>
       <body>
+        ${html}
         <script>
           ${js}
         </script>
@@ -37,46 +70,32 @@ function App() {
     </html>
   `
   return (
-    <div className="App" style={{ backgroundColor: "black" }}>
-      <div className="pane mid-pane" style={{ display: "flex" }}>
-        {/* <EditorHTML setHTML={setHTML} /> 
-        <EditorCSS setCSS={setCSS} /> */}
-        <EditorJS setJS={setJS} />
-
-      </div>
-
-      <div className="bottom-pane">
-
-      <Terminal
-          color='green'
-          backgroundColor='black'
-          barColor='black'
-          style={{ fontWeight: "bold", fontSize: "1em" }}
-          commands={{
-            "run": "node js",
-            'open-google': () => window.open('https://www.google.com/', '_blank'),
-            // showmsg: this.showMsg,
-            popup: () => alert('Terminal in React')
-          }}
-          descriptions={{
-            "run": `node result.js`,
-            'open-google': 'opens google.com',
-            showmsg: 'shows a message',
-            alert: 'alert', popup: 'alert'
-          }}
-          msg='You can write anything here. Example - Hello! My name is Foo and I like Bar.'
-          plugins={[
-            FileSystemPlugin,
-            {
-              class: NodeEvalPlugin,
-              config: {
-                filesystem: FileSystemPlugin.displayName
-              }
-            }
-          ]}
-      />
-
-      </div>
+    <div className="App">
+      <Grid container className={classes.root} spacing={2}>
+        <Grid item xs={12}>
+          <Grid container justify="center" spacing={2}>
+              <Grid key={1} item>
+                <EditorHTML setHTML={setHTML} /> 
+              </Grid>
+              <Grid key={2} item>
+                <EditorCSS setCSS={setCSS} />
+              </Grid>
+              <Grid key={3} item>
+                <EditorJS setJS={setJS} />
+              </Grid>
+          </Grid>
+          <Grid>
+            <iframe
+              srcDoc={srcDoc}
+              title="result"
+              referrerPolicy="no-referrer"
+              width="100%"
+              height="350"
+              style={{backgroundColor: "white"}}
+            ></iframe>
+          </Grid>
+        </Grid>
+      </Grid>
     </div>
   );
 }

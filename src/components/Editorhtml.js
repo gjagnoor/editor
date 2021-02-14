@@ -1,5 +1,5 @@
 // eslint-disable-next-line
-import React from "react";
+import React, {useState} from "react";
 import "codemirror/lib/codemirror.css";
 import "codemirror/theme/material.css";
 import { Controlled as CodeMirror } from 'react-codemirror2';
@@ -7,31 +7,24 @@ import "codemirror/addon/hint/show-hint.js";
 import "codemirror/addon/hint/xml-hint.js";
 import "codemirror/addon/hint/show-hint.css";
 require('codemirror/mode/xml/xml');
-// import /* codemirror XML (HTML) mode */
-// import /* codemirror CSS mode */
-// import /* codemirror JS mode */
 
-export default class EditorHTML extends React.Component {
-
-    constructor(props) { 
-        super(props);
-        this.state = {
-            value: ""
-        };
-    }
-
-    render() {
+export default function EditorHTML (props) {
+    const [value, setValue] = useState(`<div id="main">
+    <h5 id="heading">Welcome to EDITOR</h5>
+    <p>Edit the code above. Result will appear here :) Happy Coding!</p>
+    <button>Click Me!</button>
+</div>`)
         return (
-            <div style={{ width: "33%", margin: "1%" }}>
-                <div style={{backgroundColor: "black", height: "2em"}}>
-                    <h5 style={{color: "white", textAlign: "center"}}>HTML</h5>
+            <div className="indeditor">
+                <div className="editor_heading">
+                    <h5 className="heading_text">HTML</h5>
                 </div>
                 <CodeMirror 
                     onBeforeChange={(editor, data, value) => {
-                        this.setState({ value });
-                        this.props.setHTML(value)
+                        setValue(value);
+                        props.setHTML(value);
                     }}
-                    value={this.state.value}
+                    value={value}
                     className="editor"
                     options={{
                         mode: 'xml',
@@ -42,13 +35,13 @@ export default class EditorHTML extends React.Component {
                         lineWrapping: true,
                         matchBrackets: true,
                         autoCloseBrackets: true,
+                        autocorrect: true,
                         extraKeys: {
                             "Ctrl": "autocomplete"
                         }
+                        
                     }}
                 />
             </div>
         )
-    
-    }
 }
