@@ -1,6 +1,6 @@
 {
-  "name": "editor",
   "homepage": "https://{gjagnoor}.github.io/{editor}",
+  "name": "editor",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
