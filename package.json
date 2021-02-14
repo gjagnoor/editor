@@ -1,5 +1,5 @@
 {
-  "homepage": "https://{gjagnoor}.github.io/{editor}",
+  "homepage": "https://gjagnoor.github.io/editor",
   "name": "editor",
   "version": "0.1.0",
   "private": true,
@@ -67,7 +67,7 @@
   "scripts": {
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
-    "predeploy": "npm run start",
+    "predeploy": "npm run build",
     "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
