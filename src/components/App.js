@@ -9,10 +9,16 @@ import Grid from '@material-ui/core/Grid';
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
+    flexWrap: "wrap",
+    justifyContent: "space-evenly"
   },
   control: {
     padding: theme.spacing(2),
   },
+  editors: {
+    display: "flex",
+    flexWrap: "wrap",
+  }
 }));
 
 function App() {
@@ -72,19 +78,19 @@ function App() {
   return (
     <div className="App">
       <Grid container className={classes.root} spacing={2}>
-        <Grid item xs={12}>
+        <Grid item xs={12} spacing={2}>
           <Grid container justify="center" spacing={2}>
-              <Grid key={1} item>
+              <Grid key={1} item xs>
                 <EditorHTML setHTML={setHTML} /> 
               </Grid>
-              <Grid key={2} item>
+              <Grid key={2} item xs>
                 <EditorCSS setCSS={setCSS} />
               </Grid>
-              <Grid key={3} item>
+              <Grid key={3} item xs>
                 <EditorJS setJS={setJS} />
               </Grid>
           </Grid>
-          <Grid>
+          <Grid container spacing={2}>
             <iframe
               srcDoc={srcDoc}
               title="result"

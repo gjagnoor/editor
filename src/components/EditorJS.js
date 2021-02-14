@@ -12,18 +12,19 @@ export default function EditorJS (props) {
     const [value, setValue] = useState(`$("button").on("click", () => {
     alert("Yay I work!");
 });`)
-        return (
-            <div className="indeditor">
-                <div className="editor_heading">
-                    <h5 className="heading_text">JS</h5>
-                </div>
+    return (
+        <div className="indeditor">
+            <div className="editor_heading">
+                <h5 className="heading_text">JS</h5>
+            </div>
+            <div className="editor">
                 <CodeMirror 
                     onBeforeChange={(editor, data, value) => {
                         setValue(value);
                         props.setJS(value);
                     }}
                     value={value}
-                    className="editor"
+                    className="codemirror"
                     options={{
                         mode: 'javascript',
                         theme: 'material',
@@ -37,9 +38,9 @@ export default function EditorJS (props) {
                         extraKeys: {
                             "Ctrl": "autocomplete"
                         }
-                        
                     }}
                 />
             </div>
-        )
+        </div>
+    )
 }

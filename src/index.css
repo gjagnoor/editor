@@ -5,6 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: black;
 }
 
 code {
@@ -13,20 +14,29 @@ code {
 }
 
 .editor {
-  width: 28em;
+  width: 100%;
+}
+
+.codemirror {
+  width: 100%;
+  margin: auto;
+}
+
+.cmhtml {
+  margin-left: 1%;
 }
 
 .App {
-  background-color: black;
+  margin: 2%;
 }
+
 
 .indeditor {
   margin: 1%;
 }
 
 .editor_heading {
-  background-color: "black";
-  height: "2em";
+  height: 2%;
 }
 
 .heading_text {

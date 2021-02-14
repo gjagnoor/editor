@@ -19,29 +19,31 @@ export default function EditorHTML (props) {
                 <div className="editor_heading">
                     <h5 className="heading_text">HTML</h5>
                 </div>
-                <CodeMirror 
-                    onBeforeChange={(editor, data, value) => {
-                        setValue(value);
-                        props.setHTML(value);
-                    }}
-                    value={value}
-                    className="editor"
-                    options={{
-                        mode: 'xml',
-                        theme: 'material',
-                        lineNumbers: true,
-                        indentWithTabs: true,
-                        tabSize: 4,
-                        lineWrapping: true,
-                        matchBrackets: true,
-                        autoCloseBrackets: true,
-                        autocorrect: true,
-                        extraKeys: {
-                            "Ctrl": "autocomplete"
-                        }
-                        
-                    }}
-                />
+                <div className="editor">
+                    <CodeMirror 
+                        onBeforeChange={(editor, data, value) => {
+                            setValue(value);
+                            props.setHTML(value);
+                        }}
+                        value={value}
+                        className="codemirror cmhtml"
+                        options={{
+                            mode: 'xml',
+                            theme: 'material',
+                            lineNumbers: true,
+                            indentWithTabs: true,
+                            tabSize: 4,
+                            lineWrapping: true,
+                            matchBrackets: true,
+                            autoCloseBrackets: true,
+                            autocorrect: true,
+                            extraKeys: {
+                                "Ctrl": "autocomplete"
+                            }
+                            
+                        }}
+                    />
+                </div>
             </div>
         )
 }
