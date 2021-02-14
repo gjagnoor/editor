@@ -31,7 +31,7 @@ function App() {
   `);
   const [css, setCSS] = useState(`
     h5 {
-      color: red;
+      color: pink;
       font-size: 2em;
     }
     #main {

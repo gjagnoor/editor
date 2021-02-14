@@ -11,7 +11,7 @@ require('codemirror/mode/css/css.js');
 
 export default function EditorCSS (props) {
     const [value, setValue] = useState(`h5 {
-    color: red;
+    color: pink;
     font-size: 2em;
 }
 
