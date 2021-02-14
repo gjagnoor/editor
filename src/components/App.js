@@ -80,13 +80,13 @@ function App() {
       <Grid container className={classes.root} spacing={2}>
         <Grid item xs={12} spacing={2}>
           <Grid container justify="center" spacing={2}>
-              <Grid key={1} item xs>
+              <Grid key={1} item xs={12} sm={4}>
                 <EditorHTML setHTML={setHTML} /> 
               </Grid>
-              <Grid key={2} item xs>
+            <Grid key={2} item xs={12} sm={4}>
                 <EditorCSS setCSS={setCSS} />
               </Grid>
-              <Grid key={3} item xs>
+              <Grid key={3} item xs={12} sm={4}>
                 <EditorJS setJS={setJS} />
               </Grid>
           </Grid>
